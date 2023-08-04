@@ -1,0 +1,16 @@
+{"type":"FeatureCollection", "features":[
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-56.9636972222222,-20.39585]},"properties":{"NOME_AREA_":"Aldeia Campina","field_2":"20�23'45.06\"S","field_3":"56�57'49.31\"w"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-56.6603166666667,-20.6943083333333]},"properties":{"NOME_AREA_":"Nascente Rio Betione","field_2":"20�41'39.51\"S","field_3":"56�39'37.14\"w"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-56.7352111111111,-20.7407222222222]},"properties":{"NOME_AREA_":"Cachoeira Boca da On�a","field_2":"20�44'26.60\"S","field_3":"56�44'6.76\"w"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-56.6344888888889,-20.5514527777778]},"properties":{"NOME_AREA_":"Cachoeira da Gruta","field_2":"20�33'5.23\"S","field_3":"56�38'4.16\"w"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-56.8980194444444,-20.5365444444444]},"properties":{"NOME_AREA_":"Distrito de Morraria do Sul","field_2":"20�32'11.56\"S","field_3":"56�53'52.87\"w"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-56.9036305555556,-20.5387722222222]},"properties":{"NOME_AREA_":"Mirante Morraria do Sul","field_2":"20�32'19.58\"S","field_3":"56�54'13.07\"w"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-56.7416527777778,-20.5421138888889]},"properties":{"NOME_AREA_":"Mirante Serra das 03 Cruzes","field_2":"20�32'31.61\"S","field_3":"56�44'29.95\"w"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-56.9343666666667,-20.4437083333333]},"properties":{"NOME_AREA_":"Mirante Kadweus","field_2":"20�26'37.35\"S","field_3":"56�56'3.72\"w"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-56.7350277777778,-20.4022388888889]},"properties":{"NOME_AREA_":"Rio Azul","field_2":"20�24'8.06\"S","field_3":"56�44'6.10\"w"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-56.8819222222222,-20.7021777777778]},"properties":{"NOME_AREA_":"Fazenda Calif�rnia","field_2":"20�42'7.84\"S","field_3":"56�52'54.92\"w"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-56.8506333333333,-20.4936805555556]},"properties":{"NOME_AREA_":"Regi�o Gruta Urubu Rei","field_2":"20�29'37.25\"S","field_3":"56�51'2.28\"w"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-56.8428277777778,-20.3838361111111]},"properties":{"NOME_AREA_":"Agrovila Assentamento Sumatra","field_2":"20�23'1.81\"S","field_3":"56�50'34.18\"w"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-56.7424888888889,-20.781475]},"properties":{"NOME_AREA_":"Fazenda Santa Laura Vicunia","field_2":"20�46'53.31\"S","field_3":"56�44'32.96\"w"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-56.7625694444444,-20.7688111111111]},"properties":{"NOME_AREA_":"Po��o Cana�/ PNSBd","field_2":"20�46'7.72\"S","field_3":"56�45'45.25\"w"}}
+]}
