@@ -17,7 +17,7 @@
       <div v-for="item in currentCircleContent.items" :key="item.id" class="checkShapes">
         <!-- Renderizar como checkbox se não tiver URL -->
         <template v-if="!item.url">
-          <input type="checkbox" :name="item.name" :id="item.id">
+          <input type="checkbox" :name="item.name" :id="item.id" @change="handleCheckboxChange(item.name, $event)">
           <label :for="item.id">{{ item.label }}</label>
         </template>
         <!-- Renderizar como link se tiver URL -->
@@ -35,6 +35,7 @@ export default {
   data() {
     return {
       showSidebar: false,
+      map: null,
       currentCircleContent: {},
       circles: [
         {
@@ -83,6 +84,13 @@ export default {
       this.showSidebar = !this.showSidebar;
       this.currentCircleContent = circle.content;
     },
+    handleCheckboxChange(itemName, event) {
+      if (event.target.checked) {
+        this.$emit('itemChecked', itemName, event);
+      } else {
+        this.$emit('itemUnchecked', itemName, event);
+      }
+    }
   },
 };
 </script>
