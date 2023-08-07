@@ -5,8 +5,10 @@
       </div>
 
       <div class="loginAuth">
-
-        <img id="loginIcon" src="../assets/images/loginImg.svg" alt="">
+        <div class="imgContainer">
+          <img class="loginIcon" src="../assets/images/Logo_branca_horizontal.png" alt="">
+          <img class="loginIcon" src="../assets/images/cabeceirasloo.svg" alt="">
+        </div>
         <p>Por favor<br>Faça login para continuar</p>
         <button @click="login">Login</button>
       </div>  
@@ -64,7 +66,7 @@ export default {
     justify-content: center;
     box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
     width: 35%;
-    height: 60%;
+    height: 50%;
     border-radius: 8px;
     color: white;
     
@@ -73,7 +75,7 @@ export default {
     @media (max-width: 1104px) {
       .loginAuth {
         width: 50%; /* (1200px ÷ 16px = 75rem) */
-        height: 65%; /* (1000px ÷ 16px = 62.5rem) */
+        height: 50%; /* (1000px ÷ 16px = 62.5rem) */
     }
   }
 
@@ -81,7 +83,7 @@ export default {
   @media (max-width: 750px) {
       .loginAuth {
         width: 80%; /* (1200px ÷ 16px = 75rem) */
-        height: 65%; /* (1000px ÷ 16px = 62.5rem) */
+        height: 50%; /* (1000px ÷ 16px = 62.5rem) */
     }
   }
 
@@ -98,8 +100,18 @@ export default {
     letter-spacing: 1px;
   }
 
-  #loginIcon {
-      width: 50%;
+  .imgContainer{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .loginIcon {
+      width: 45%;
+      margin: 10px;
+
   }
 
   
