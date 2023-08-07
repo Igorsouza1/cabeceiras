@@ -1,11 +1,9 @@
 <template >
     <div>
         <div class="mapContainer">
-            
             <ShapesIcon class="map-icon"/>
             <div id="map">
             </div>
-            
         </div>
        
     </div>

@@ -91,7 +91,7 @@ export default {
 .container {
   position: fixed;
   left: 0;
-  top: 20%;
+  top: 25%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
@@ -127,7 +127,6 @@ export default {
   position: absolute;
   top: 0;
   left: 65px; /* Ajuste conforme o tamanho do círculo */
-  height: 80vh;
   border-radius: 10px;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   width: 250px;
@@ -135,7 +134,6 @@ export default {
   transition: 0.3s;
   padding: 15px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-  
 }
 
 .checkShapes{
