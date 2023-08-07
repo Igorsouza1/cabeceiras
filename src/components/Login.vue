@@ -8,13 +8,12 @@
 
         <img id="loginIcon" src="../assets/images/loginImg.svg" alt="">
         <p>Por favor<br>Faça login para continuar</p>
-        <button @click="login" v-if="!isAuthenticated">Login</button>
+        <button @click="login">Login</button>
       </div>  
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
 import { useAuth0 } from '@auth0/auth0-vue';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -32,7 +31,7 @@ export default {
   },
 
   setup() {
-    const { isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0();
+    const {  isLoading, loginWithRedirect, logout } = useAuth0();
     const store = useStore();
 
     const login = async () => {
@@ -44,7 +43,7 @@ export default {
       }
     };
 
-    return { login, logout, isAuthenticated: ref(isAuthenticated.value), isLoading };
+    return { login, logout, isLoading };
   },
 };
 </script>
@@ -54,7 +53,7 @@ export default {
     .loginAuth {
     position: absolute;
     z-index: 999;
-    background-color: #fff;
+    background-color: #006770;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -63,10 +62,12 @@ export default {
     text-align: center;
     align-items: center;
     justify-content: center;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    width: 30%;
-    height: 55%;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
+    width: 35%;
+    height: 60%;
     border-radius: 8px;
+    color: white;
+    
     }
 
     @media (max-width: 1104px) {
@@ -94,10 +95,11 @@ export default {
   .loginAuth p{
     font-size: 20px;
     margin: 25px;
+    letter-spacing: 1px;
   }
 
   #loginIcon {
-      width: 230px;
+      width: 50%;
   }
 
   
@@ -116,11 +118,12 @@ export default {
     width: 200px;
     padding: 15px;
     margin-bottom: 20px;
-    background-color: #3da136;
+    background-color: #00318b;
     border: none;
     border-radius: 5px;
     color: white;
     font-weight: bold;
+    cursor: pointer;
   }
 
   #map {

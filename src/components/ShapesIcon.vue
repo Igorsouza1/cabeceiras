@@ -1,120 +1,106 @@
 <template>
-    <div class="lateralBar">
-      <div class="iconBar" @click="toggleSidebar">
-        <img src="../assets/images/shapesIcon.png" alt="">
-      </div>
-      <!-- <div class="iconBar" @click="toggleSidebar">
-        <img src="../assets/images/shapesIcon.png" alt="">
-      </div>
-      <div class="iconBar" @click="toggleSidebar">
-        <img src="../assets/images/shapesIcon.png" alt="">
-      </div> -->
-      <div v-if="showSidebar" class="sidebar">
-        <!-- Conteúdo da sidebar aqui -->
-        <h3>Shapes</h3>
-        <div class="checkbox-item">
-                <input type="checkbox" id="LimiteMunicipio" name="LimiteMunicipio" onchange="toggleGeoJSON('LimiteMunicipio', './assets/Bodoquena_MS.geojson')" >
-                <label for="LimiteMunicipio">Limite do Município</label>
-            </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="Pontos" name="Pontos" onchange="toggleGeoJSON('Pontos', './assets/Pontos_Bodoquena.geojson')" >
-                <label for="Pontos">Pontos</label>
-            </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="ParnaSerraDaBodoquena" name="ParnaSerraDaBodoquena" onchange="toggleGeoJSON('ParnaSerraDaBodoquena', './assets/parna_serra_da_bodoquena.geojson')">
-                <label for="ParnaSerraDaBodoquena">Unidades de Conservação</label>
-            </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="Assentamento" name="Assentamento" onchange="toggleGeoJSON('Assentamento', './assets/Assentamento_Bodoquena.geojson')">
-                <label for="Assentamento">Assentamentos</label>
-            </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="Solo" name="Solo"  onchange="toggleGeoJSON('Solo', './assets/Solo_Bodoquena.geojson')">
-                <label for="Solo">Solo</label>
-            </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="Geomorfologia" name="Geomorfologia" onchange="toggleGeoJSON('Geomorfologia', './assets/Geomorfologia_Bodoquena.geojson')">
-                <label for="Geomorfologia">Geomorfologia</label>
-            </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="Rios" name="Rios" onchange="toggleGeoJSON('Rios', './assets/Rios_Bodoquena.geojson')">
-                <label for="Rios">Hidrografia</label>
-            </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="PropriedadesBacia" name="PropriedadesBacia" onchange="toggleGeoJSON('PropriedadesBacia', './assets/Propriedades_Bacia_Betione.geojson')">
-                <label for="PropriedadesBacia">Propriedades Bacia Betione</label>
-            </div>
+  <div class="container">
+    <!-- Renderizar cada círculo com base nos dados -->
+    <div 
+      v-for="circle in circles" 
+      :key="circle.id" 
+      class="iconCircle" 
+      @click="toggleSidebar(circle)"
+      @mousedown.prevent.stop
+    >
+      <img :src="circle.icon" :alt="circle.name">
+    </div>
+
+    <!-- Sidebar com conteúdo dinâmico -->
+    <div v-if="showSidebar" class="sidebar" @mousedown.prevent.stop>
+      <h3>{{ currentCircleContent.title }}</h3>
+      <div v-for="item in currentCircleContent.items" :key="item.id" class="checkShapes">
+        <input type="checkbox" :name="item.name" :id="item.id">
+        <label :for="item.id">{{ item.label }}</label>
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: "ShapesIcon",
-    data() {
-      return {
-        showSidebar: false,
-      };
-    },
-    methods: {
-      toggleSidebar() {
-        this.showSidebar = !this.showSidebar;
-      },
-      closeSidebar() {
-        this.showSidebar = false;
-      },
-    },
-  };
-  </script>
-  
-  <style scoped>
-  .lateralBar {
-    position: relative; /* Alterado para relative para posicionar o botão de fechar corretamente */
-    max-width: 5%;
-    min-width: 90px;
-    padding: 10px;
-    left: 0;
-    top: 0;
-    text-align: center;
-    height: 100%;
-    background-color: white;
-    z-index: 1002;
-    border-right: 1px solid #000000;
-    border-top-right-radius: 5px;
-  }
-  
-  .iconBar {
-    padding: 10px;
-    background-color: #000000;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-bottom: 25px;
-  }
-  
-  .iconBar img {
-    width: 50px;
-  }
-  
-  /* Estilos da sidebar */
-  .sidebar {
-    position: absolute;
-    top: 0;
-    left: calc(5% + 85px); /* Alterado para posicionar a sidebar corretamente */
-    height: 100%;
-    width: 200px;
-    background: white;
-    z-index: 1002;
-  }
+  </div>
+</template>
 
-  .checkbox-item{
-    padding: 5px;
-    margin-left: 10px;
-    font-size: 0.9rem;
-    text-align: left;
-  }
+<script>
+export default {
+  name: "ShapesIcon",
+  data() {
+    return {
+      showSidebar: false,
+      currentCircleContent: {},
+      circles: [
+        {
+          id: 1,
+          icon: require('../assets/images/shape.png'),
+          name: 'Shape 1',
+          content: {
+            title: 'Shapes',
+            items: [
+              { id: 'shape1-item1', name: 'item1', label: 'Shape 1' },
+              // ... outros itens
+            ]
+          }
+        },
+        // ... outros círculos
+      ]
+    };
+  },
+  methods: {
+    toggleSidebar(circle) {
+      this.showSidebar = !this.showSidebar;
+      this.currentCircleContent = circle.content;
+    },
+  },
+};
+</script>
 
-  .checkbox-item input{
-    margin-right: 5px;
-  }
-  </style>
-  
+<style scoped>
+.container {
+  position: fixed;
+  left: 0;
+  top: 18%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+
+.iconCircle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #006770;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 30px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.iconCircle:hover {
+  background-color: #003035;
+}
+
+.iconCircle img{
+  width: 40px;
+}
+
+/* Estilos da sidebar */
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 65px; /* Ajuste conforme o tamanho do círculo */
+  height: 80vh;
+  border-radius: 10px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  width: 250px;
+  background: #ffffff;
+  transition: 0.3s;
+  padding: 20px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+</style>

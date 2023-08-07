@@ -1,8 +1,9 @@
 <template >
     <div>
         <div class="mapContainer">
+            
+            <ShapesIcon class="map-icon"/>
             <div id="map">
-                <ShapesIcon class="map-icon"/>
             </div>
             
         </div>
@@ -39,7 +40,9 @@ export default {
     #map {
         position: absolute;
         width: 100%;
-        height: 88%;
+        height: 90vh;
+        z-index: 999;
+        
     }
 
     
