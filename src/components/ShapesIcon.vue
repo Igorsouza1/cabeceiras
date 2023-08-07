@@ -17,7 +17,7 @@
       <div v-for="item in currentCircleContent.items" :key="item.id" class="checkShapes">
         <!-- Renderizar como checkbox se não tiver URL -->
         <template v-if="!item.url">
-          <input type="checkbox" :name="item.name" :id="item.id" @change="handleCheckboxChange(item.name, $event)">
+          <input type="checkbox" :name="item.name" :id="item.id" v-model="item.checked" @change="handleCheckboxChange(item.name, $event)">
           <label :for="item.id">{{ item.label }}</label>
         </template>
         <!-- Renderizar como link se tiver URL -->
@@ -45,7 +45,7 @@ export default {
           content: {
             title: 'Shapes',
             items: [
-              { id: 'LimiteDoMunicipio', name: 'LimiteDoMunicipio', label: 'Limite do Municipio' },
+              { id: 'LimiteDoMunicipio', name: 'LimiteDoMunicipio', label: 'Limite do Municipio', checked:false },
               { id: 'Pontos', name: 'Pontos', label: 'Pontos' },
               { id: 'UnidadesDeConservacao', name: 'UnidadesDeConservacao', label: 'Unidades de Conservação' },
               { id: 'Assentamentos', name: 'Assentamentos', label: 'Assentamentos' },
