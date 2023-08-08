@@ -30,22 +30,51 @@
     data() {
       return {
         map: null,
-        geojsonLayers: {}
+        geojsonLayers: {},
+        colors: {
+            LimiteDoMunicipio: 'black',
+            Pontos: 'green',
+            UnidadesDeConservacao: 'orange',
+            Assentamentos: 'red',
+            Solo: 'brown',
+            Geomorfologia: 'purple',
+            Hidrografia: 'blue',
+            PropriedadesBaciaBetione: 'yellow',
+            // Adicione mais cores conforme necessário
+        },
       };
     },
     methods: {
         toggleGeojsonLayer(itemName, data, event) {
             if (event.target.checked) {
             if (!this.geojsonLayers[itemName]) {
-                const icon = L.icon({
-                iconUrl: require('../assets/images/point.png'), // Substitua pelo caminho para o seu ícone
-                iconSize: [35, 35], // Substitua pelo tamanho do seu ícone
-                });
-
+                const color = this.colors[itemName] || 'blue';
                 this.geojsonLayers[itemName] = L.geoJSON(data, {
-                pointToLayer: function (feature, latlng) {
+                style: {
+                    fillColor: color,
+                    fillOpacity: 0.6,
+                    color: itemName === 'Hidrografia' ? 'blue' : 'black', // Se o nome do item for 'Hidrografia', a cor da borda será azul, caso contrário será preta
+                    weight: itemName === 'Hidrografia' ? 1.5 : 1 
+                },
+                onEachFeature: function(feature, layer) {
+                    layer.on('click', function() {
+                    // Exibir informações quando o ponto for clicado
+                    var properties = feature.properties || properties;
+                    if (properties !== undefined) {
+                        var info = properties.NOME_AREA_ + '<br>';
+                        layer.bindPopup(info).openPopup();
+                    } else {
+                        console.log("Propriedades não definidas.");
+                    }
+                    });
+                },
+                pointToLayer: itemName === 'Pontos' ? function (feature, latlng) {
+                    const icon = L.icon({
+                    iconUrl: require('../assets/images/point.png'), // Substitua pelo caminho para o seu ícone
+                    iconSize: [35, 35], // Substitua pelo tamanho do seu ícone
+                    });
                     return L.marker(latlng, { icon: icon });
-                }
+                } : null
                 }).addTo(this.map);
             }
             } else {
@@ -86,18 +115,25 @@
       }
     },
     mounted() {
-      this.map = L.map('map', {
-        zoomControl: false,
-      }).setView([-20.519, -56.7217], 10);
-  
-      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-        maxZoom: 17,  
-      }).addTo(this.map);
-  
-      L.control.zoom({
-        position: 'topright'
-      }).addTo(this.map);
+        this.map = L.map('map', {
+            zoomControl: false,
+        }).setView([-20.519, -56.7217], 10);
+
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+            maxZoom: 17,  
+        }).addTo(this.map);
+
+        L.control.zoom({
+            position: 'topright'
+        }).addTo(this.map);
+
+        // Adicione o ouvinte de evento aqui
+        this.map.on('popupclose', function(e) {
+            if (e.popup === this.popup) {
+            this.popup = null;
+            }
+        });
     },
   }
   </script>
