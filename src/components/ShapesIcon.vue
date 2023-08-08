@@ -153,6 +153,11 @@ export default {
 
 .checkShapes input{
   margin-right: 5px;
+  cursor: pointer;
+}
+
+.checkShapes label{
+  cursor: pointer;
 }
 
 .sidebarLink {

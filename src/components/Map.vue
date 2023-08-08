@@ -13,7 +13,14 @@
   import L from 'leaflet';
   import 'leaflet/dist/leaflet.css';
   import ShapesIcon from './ShapesIcon.vue';
-  import geojsonData from '../assets/geoJson/Bodoquena_MS.json';
+  import LimiteDoMunicipioData from '../assets/geoJson/Bodoquena_MS.json';
+  import PontosData from '../assets/geoJson/Pontos_Bodoquena.json'; 
+  import UnidadesData from '../assets/geoJson/parna_serra_da_bodoquena.json'; 
+  import AssentamentoData from '../assets/geoJson/Assentamento_Bodoquena.json'; 
+  import SoloData from '../assets/geoJson/Solo_Bodoquena.json'; 
+  import GeomorfologiaData from '../assets/geoJson/Geomorfologia_Bodoquena.json';
+  import HidrografiaData from '../assets/geoJson/Rios_Bodoquena.json';
+  import PropriedadesBaciaData from '../assets/geoJson/Propriedades_Bacia_Betione.json';
   
   export default {
     name: 'MapComponent',
@@ -23,22 +30,58 @@
     data() {
       return {
         map: null,
-        geojsonLayer: null
+        geojsonLayers: {}
       };
     },
     methods: {
+        toggleGeojsonLayer(itemName, data, event) {
+            if (event.target.checked) {
+            if (!this.geojsonLayers[itemName]) {
+                const icon = L.icon({
+                iconUrl: require('../assets/images/point.png'), // Substitua pelo caminho para o seu ícone
+                iconSize: [35, 35], // Substitua pelo tamanho do seu ícone
+                });
+
+                this.geojsonLayers[itemName] = L.geoJSON(data, {
+                pointToLayer: function (feature, latlng) {
+                    return L.marker(latlng, { icon: icon });
+                }
+                }).addTo(this.map);
+            }
+            } else {
+            if (this.geojsonLayers[itemName]) {
+                this.map.removeLayer(this.geojsonLayers[itemName]);
+                this.geojsonLayers[itemName] = null;
+            }
+            }
+        },
       handleGeoJSONVisibility(itemName, event) {
-        if (itemName === 'LimiteDoMunicipio') {
-          if (event.target.checked) {
-            if (!this.geojsonLayer) {
-              this.geojsonLayer = L.geoJSON(geojsonData).addTo(this.map);
-            }
-          } else {
-            if (this.geojsonLayer) {
-              this.map.removeLayer(this.geojsonLayer);
-              this.geojsonLayer = null;
-            }
-          }
+        switch (itemName) {
+          case 'LimiteDoMunicipio':
+            this.toggleGeojsonLayer(itemName, LimiteDoMunicipioData, event);
+            break;
+          case 'Pontos':
+            this.toggleGeojsonLayer(itemName, PontosData, event);
+            break;
+          case 'UnidadesDeConservacao':
+            this.toggleGeojsonLayer(itemName, UnidadesData, event);
+            break;  
+          case 'Assentamentos':
+            this.toggleGeojsonLayer(itemName, AssentamentoData, event);
+            break; 
+          case 'Solo':
+            this.toggleGeojsonLayer(itemName, SoloData, event);
+            break;
+          case 'Geomorfologia':
+            this.toggleGeojsonLayer(itemName, GeomorfologiaData, event);
+            break;
+          case 'Hidrografia':
+            this.toggleGeojsonLayer(itemName, HidrografiaData, event);
+            break;
+          case 'PropriedadesBaciaBetione':
+            this.toggleGeojsonLayer(itemName, PropriedadesBaciaData, event);
+            break;
+          // Adicione mais cases conforme necessário
         }
       }
     },
@@ -65,6 +108,7 @@
       width: 100%;
       height: 90vh;
       z-index: 999;
+      overflow-y: hidden;
     }
   </style>
   
