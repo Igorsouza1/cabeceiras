@@ -2,16 +2,16 @@
   <div class="navCategoria">
     <ul>
       <li>
-        <a href="">
+        <router-link to="/map">
           <img src="../assets/images/cabeIcon.svg" alt="Cabeceiras Icon">
           <p>Cabeceiras</p>
-        </a>
+        </router-link>
       </li>
       <li>
-        <a href="">
+        <router-link to="/mapriodaprata">
           <img src="../assets/images/rioIcon.svg" alt="Rio da Prata Icon">
           <p>Rio da Prata</p>
-        </a>
+      </router-link>
       </li>
     </ul>
   </div>

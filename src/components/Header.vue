@@ -1,7 +1,7 @@
 <template>
   <header class="header" :on-load="teste()">
     <img class="header__image header__image--2" src="../assets/images/cabeceirasloo.svg" alt="Image 2">
-    <div v-if="$store.state.isAuthenticated && $route.path === '/map'" class="category-nav">
+    <div v-if="$store.state.isAuthenticated && $route.path === '/map' || $route.path === '/mapriodaprata' " class="category-nav">
       <CategoryNavComponent />
     </div>
   </header>
