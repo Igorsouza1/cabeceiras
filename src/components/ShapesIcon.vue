@@ -53,6 +53,7 @@ export default {
               { id: 'Geomorfologia', name: 'Geomorfologia', label: 'Geomorfologia' },
               { id: 'Hidrografia', name: 'Hidrografia', label: 'Hidrografia' },
               { id: 'PropriedadesBaciaBetione', name: 'PropriedadesBaciaBetione', label: 'Propriedades Bacia Betione' },
+              { id: 'Desmatamento', name: 'Desmatamento', label: 'Desmatamento' },
               // ... outros itens
             ]
           }

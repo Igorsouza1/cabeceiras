@@ -21,6 +21,7 @@ import SoloData from '../assets/geoJson/Solo_Bodoquena.json';
 import GeomorfologiaData from '../assets/geoJson/Geomorfologia_Bodoquena.json';
 import HidrografiaData from '../assets/geoJson/Rios_Bodoquena.json';
 import PropriedadesBaciaData from '../assets/geoJson/Propriedades_Bacia_Betione.json';
+import Desmatamento from '../assets/geoJson/Desmatamento.json';
 
 export default {
   name: 'MapComponent',
@@ -40,6 +41,7 @@ export default {
           Geomorfologia: 'purple',
           Hidrografia: 'blue',
           PropriedadesBaciaBetione: 'yellow',
+          Desmatamento: 'white',
           // Adicione mais cores conforme necessário
       },
     };
@@ -72,6 +74,9 @@ export default {
         case 'PropriedadesBaciaBetione':
           this.toggleGeojsonLayer(itemName, PropriedadesBaciaData, event);
           break;
+        case 'Desmatamento':
+          this.toggleGeojsonLayer(itemName, Desmatamento, event);
+          break;
         // Adicione mais cases conforme necessário
       }
     },
@@ -83,7 +88,7 @@ export default {
             this.geojsonLayers[itemName] = L.geoJSON(data, {
                 style: {
                 fillColor: color,
-                fillOpacity: 0.6,
+                fillOpacity: 1 ,
                 color: itemName === 'Hidrografia' ? 'blue' : 'black', // Se o nome do item for 'Hidrografia', a cor da borda será azul, caso contrário será preta
                 weight: itemName === 'Hidrografia' ? 3 : 1 // Aumente o peso para a hidrografia
                 },
@@ -132,7 +137,7 @@ export default {
         iconSize: [35, 35], // Substitua pelo tamanho do seu ícone
       });
       return L.marker(latlng, { icon: icon });
-    }
+    },
   },
   mounted() {
     this.map = L.map('map', {
@@ -147,7 +152,11 @@ export default {
     L.control.zoom({
       position: 'topright'
     }).addTo(this.map);
+
+
+
   },
+
 }
 </script>
   
